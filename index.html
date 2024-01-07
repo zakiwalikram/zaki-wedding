@@ -160,7 +160,99 @@
       </div>
     </section>
 
+    <section id="story" class="story">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8 col-10 text-center">
+            <span>Bagaimana cinta Kami Bersemi</span>
+            <h2>Cerita Kami</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima assumenda eveniet numquam libero repudiandae aut, dolore sit explicabo temporibus voluptatum.</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <ul class="timeline">
+              <li>
+                <div class="timeline-image" style="background-image: url(img/wpu.jpg)"></div>
+                <div class="timeline-panel">
+                  <div class="timeline-heading">
+                    <h3>Pertama Bertemu</h3>
+                    <span>1 Januari 2025</span>
+                  </div>
+                  <div class="timeline-body">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio ab eligendi minima, laborum pariatur quia reprehenderit corporis mollitia at sint?</p>
+                  </div>
+                </div>
+              </li>
+              <li class="timeline-inverted">
+                <div class="timeline-image" style="background-image: url(https://picsum.photos/300/300)"></div>
+                <div class="timeline-panel">
+                  <div class="timeline-heading">
+                    <h3>Mulai Serius</h3>
+                    <span>1 Januari 2026</span>
+                  </div>
+                  <div class="timeline-body">
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique repellat maiores sequi, dolorem tempore dolor obcaecati. Nostrum voluptatem odio rem. Provident dolorum debitis assumenda molestias.</p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="timeline-image" style="background-image: url(https://picsum.photos/301/301)"></div>
+                <div class="timeline-panel">
+                  <div class="timeline-heading">
+                    <h3>Tunangan</h3>
+                    <span>1 Oktober 2026</span>
+                  </div>
+                  <div class="timeline-body">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati ipsam, maiores eum quis quibusdam eaque!</p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="gallery">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8 col-10 text-center">
+            <span>Memori Kisah Kami</span>
+            <h2>Galeri Foto</h2>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus, veniam ipsa cumque eaque dolorum vel iusto minima repellendus similique autem totam doloremque voluptatem cum id nihil mollitia, omnis tempore corporis.</p>
+          </div>
+        </div>
+
+        <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1">
+          <div class="col mt-3">
+            <a href="img/gallery/profile.jpg" data-toggle="lightbox" data-caption="Zakiwal Ikram 1" data-gallery="mygallery">
+              <img src="img/gallery/thumbnail/profile.jpg" alt="Zakiwal Ikram 1" class="img-fluid w-100 rounded" />
+            </a>
+          </div>
+          <div class="col mt-3">
+            <a href="https://picsum.photos/id/100/1200/768" data-toggle="lightbox" data-gallery="mygallery">
+              <img src="https://picsum.photos/id/100/300/400" alt="Zakiwal Ikram 2" class="img-fluid w-100 rounded" />
+            </a>
+          </div>
+          <div class="col mt-3">
+            <a href="https://picsum.photos/id/101/1200/768" data-toggle="lightbox" data-gallery="mygallery">
+              <img src="https://picsum.photos/id/101/300/400" alt="Zakiwal Ikram 3" class="img-fluid w-100 rounded" />
+            </a>
+          </div>
+          <div class="col mt-3">
+            <a href="https://picsum.photos/id/102/1200/768" data-toggle="lightbox" data-gallery="mygallery">
+              <img src="https://picsum.photos/id/102/300/400" alt="Zakiwal Ikram 4" class="img-fluid w-100 rounded" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.3/dist/index.bundle.min.js"></script>
 
     <script>
       simplyCountdown('.simply-countdown', {
@@ -175,6 +267,19 @@
           minutes: { singular: 'menit', plural: 'menit' },
           seconds: { singular: 'detik', plural: 'detik' },
         },
+      });
+    </script>
+
+    <script>
+      const stickyTop = document.querySelector('.sticky-top');
+      const offcanvas = document.querySelector('.offcanvas');
+
+      offcanvas.addEventListener('show.bs.offcanvas', function () {
+        stickyTop.style.overflow = 'visible';
+      });
+
+      offcanvas.addEventListener('hidden.bs.offcanvas', function () {
+        stickyTop.style.overflow = 'hidden';
       });
     </script>
   </body>
