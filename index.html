@@ -22,7 +22,7 @@
   <body>
     <section id="hero" class="hero w-100 p-3 mx-auto text-center d-flex justify-content-center align-items-center text-white">
       <main>
-        <h4>Kepada Bapak/Ibu/Saudara/i,</h4>
+        <h4>Kepada <span>Bapak/Ibu/Saudara/i, </span></h4>
         <h1>Zaki & Hello World</h1>
         <p>Akan melangsungkan resepsi pernikahan dalam :</p>
         <div class="simply-countdown"></div>
@@ -114,6 +114,17 @@
               Alamat : Gedung Serbaguna Barokah. <br />
               Jl. Solok - Muara Panas, Cubagan, Kec. Bukit Sundi, Kabupaten Solok, Sumatera Barat
             </p>
+
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3989.3895130277324!2d100.68292457916787!3d-0.8401131487789184!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e2b35dc2d290ac1%3A0x4818dd4b23d70df0!2sGedung%20Serbaguna%20Barokah!5e0!3m2!1sid!2sid!4v1705025526837!5m2!1sid!2sid"
+              width="100%"
+              height="250"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+
             <a href="https://maps.app.goo.gl/sxtTqdDCgoZgUDPs5" target="_blank" class="btn btn-light btn-sm my-3">Klik untuk membuka peta</a>
             <p class="description">Diharapkan untuk tidak salah alamat dan tanggal. Manakala tiba ditujuan namun tidak ada tanda-tanda sedang dilangsungkan pernikahan boleh jadi anda salah jadwal atau salah tempat</p>
           </div>
@@ -286,6 +297,32 @@
             <button class="btn btn-primary">Kirim</button>
           </div>
         </form>
+
+        <div class="row justify-content-center mt-5">
+          <div class="col-md-6">
+            <div id="disqus_thread"></div>
+            <script>
+              /**
+               *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+               *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+              /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+              (function () {
+                // DON'T EDIT BELOW THIS LINE
+                var d = document,
+                  s = d.createElement('script');
+                s.src = 'https://zaki-wedding.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+              })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -344,6 +381,16 @@
       </div>
     </footer>
 
+    <div id="audio-container">
+      <audio id="song" autoplay loop>
+        <source src="audio/baralek.mp3" type="audio/mp3" />
+      </audio>
+
+      <div class="audio-icon-wrapper" style="display: none">
+        <i class="bi bi-disc"></i>
+      </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.3/dist/index.bundle.min.js"></script>
@@ -379,6 +426,11 @@
 
     <script>
       const rootElement = document.querySelector(':root');
+      const audioIconWrapper = document.querySelector('.audio-icon-wrapper');
+      const audioIcon = document.querySelector('.audio-icon-wrapper i');
+      const song = document.querySelector('#song');
+      let isPlaying = false;
+
       function disableScroll() {
         scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
@@ -393,11 +445,35 @@
       function enableScroll() {
         window.onscroll = function () {};
         rootElement.style.scrollBehavior = 'smooth';
-        localStorage.setItem('opened', 'true');
+        // localStorage.setItem('opened', 'true');
+        playAudio();
       }
-      if (!localStorage.getItem('opened')) {
-        disableScroll();
+
+      function playAudio() {
+        song.volume = 0.1;
+        audioIconWrapper.style.display = 'flex';
+        song.play();
+        isPlaying = true;
       }
+
+      audioIconWrapper.onclick = function () {
+        if (isPlaying) {
+          song.pause();
+          audioIcon.classList.remove('bi-disc');
+          audioIcon.classList.add('bi-pause-circle');
+        } else {
+          song.play();
+          audioIcon.classList.add('bi-disc');
+          audioIcon.classList.remove('bi-pause-circle');
+        }
+
+        isPlaying = !isPlaying;
+      };
+
+      // if (!localStorage.getItem('opened')) {
+      //   disableScroll();
+      // }
+      disableScroll();
     </script>
 
     <script>
@@ -415,6 +491,17 @@
           });
         });
       });
+    </script>
+
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const nama = urlParams.get('n') || '';
+      const pronoun = urlParams.get('p') || 'Bapak/Ibu/Saudara/i';
+      const namaContainer = document.querySelector('.hero h4 span');
+
+      namaContainer.innerText = `${pronoun} ${nama},`.replace(/ ,$/, ',');
+
+      document.querySelector('#nama').value = nama;
     </script>
   </body>
 </html>
